@@ -3,8 +3,8 @@
 import os
 import pandas as pd
 from apps.statements.extract import extract_data
+from apps.analysis.summary import summary
 from apps.analysis import (
-    summary,
     classify_trans,
     money,
     redundant_trans,
@@ -28,6 +28,7 @@ def analyze_statement(pdf_path):
 
     # Step 2: Load extracted Excel
     excel_path = pdf_path[:pdf_path.find(".")] + ".xlsx"
+    print(excel_path)
     data = pd.read_excel(excel_path)
 
     # Step 3: Basic info
@@ -40,6 +41,7 @@ def analyze_statement(pdf_path):
         "total_transactions": total_trans,
         "statement_duration_months": months
     }
+    print(info)
 
     # Step 4: Transaction classification
     data = classify_trans(data)

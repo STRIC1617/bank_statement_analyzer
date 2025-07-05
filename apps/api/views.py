@@ -20,9 +20,14 @@ class StatementAnalysisView(APIView):
 
         # Save the uploaded file to media/
         save_path = os.path.join(settings.MEDIA_ROOT, file_obj.name)
-        with open(save_path, "wb+") as destination:
-            for chunk in file_obj.chunks():
-                destination.write(chunk)
+        try:
+            os.makedirs(settings.MEDIA_ROOT, exist_ok=True)
+            with open(save_path, "wb+") as destination:
+                for chunk in file_obj.chunks():
+                    destination.write(chunk)
+            print(f"Saved successfully to {save_path}")
+        except Exception as e:
+            print(f"[ERROR] Could not save file: {e}")
 
         try:
             # Run analysis
