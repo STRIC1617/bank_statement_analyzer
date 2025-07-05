@@ -8,6 +8,7 @@ asgiref==3.8.1
 astunparse==1.6.3
 attrs==25.3.0
 beautifulsoup4==4.13.4
+python-decouple
 bidict==0.23.1
 bitarray==3.4.2
 blinker==1.9.0

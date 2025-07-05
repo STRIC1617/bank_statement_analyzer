@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'apps.common',
     'apps.webhooks',
     'apps.ai_models',
+    'apps.predictive',
 ]
 
 MIDDLEWARE = [
