@@ -31,8 +31,10 @@ ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
 
 
 # Application definition
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
 INSTALLED_APPS = [
+    'rest_framework.authtoken',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,14 +43,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'storages',
-    'apps.users',
-    'apps.banks',
-    'apps.statements',
-    'apps.analysis',
-    'apps.api',
-    'apps.common',
-    'apps.webhooks',
-    'apps.ai_models',
+    # 'apps.users',
+    'apps.users.apps.UsersConfig',
+    'apps.banks.apps.BanksConfig',
+    'apps.statements.apps.StatementsConfig',
+    'apps.analysis.apps.AnalysisConfig',
+    'apps.api.apps.ApiConfig',
+    'apps.common.apps.CommonConfig',
+    'apps.webhooks.apps.WebhooksConfig',
+    'apps.ai_models.apps.AiModelsConfig',
     'apps.predictive',
 ]
 
@@ -91,12 +94,24 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv("DB_NAME", "bank_db"),
         'USER': os.getenv("DB_USER", "postgres"),
-        'PASSWORD': os.getenv("DB_PASSWORD", "postgres"),
+        'PASSWORD': os.getenv("DB_PASSWORD", "root"),
         'HOST': os.getenv("DB_HOST", "localhost"),
         'PORT': os.getenv("DB_PORT", "5432"),
     }
 }
 
+# config/settings/base.py
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
 
 
 # Password validation

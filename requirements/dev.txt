@@ -11,6 +11,9 @@ beautifulsoup4==4.13.4
 bidict==0.23.1
 bitarray==3.4.2
 python-decouple
+djangorestframework
+psycopg2-binary
+django-storages
 blinker==1.9.0
 cachelib==0.13.0
 camelot-py==1.0.0

@@ -2,8 +2,8 @@
 
 import os
 import pandas as pd
-from extract import extract_data
-from analysis import (
+from apps.statements.extract import extract_data
+from apps.analysis import (
     summary,
     classify_trans,
     money,
